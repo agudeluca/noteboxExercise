@@ -1,0 +1,21 @@
+# flow.yaml
+
+appId: com.agudeluca1.noteBox-exercise
+---
+
+- launchApp
+- tapOn:
+    text: "Create Task"
+- tapOn:
+    id: "input-title"
+- inputRandomText:
+    length: 20
+- tapOn:
+    id: "input-text"
+- inputRandomText:
+    length: 300
+- tapOn:
+    id: "details"
+- tapOn:
+    text: "Done"
+
