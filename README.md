@@ -18,6 +18,11 @@ Persist notes using a storage solution.
 
 ## Getting Started
 
+
+![<img src="image.png" width="50"/>](https://github.com/agudeluca/noteboxExercise/blob/main/images/1.png?raw=true)
+![<img src="image.png" width="50"/>](https://github.com/agudeluca/noteboxExercise/blob/main/images/2.png?raw=true)
+![<img src="image.png" width="50"/>](https://github.com/agudeluca/noteboxExercise/blob/main/images/3.png?raw=true)
+![<img src="image.png" width="50"/>](https://github.com/agudeluca/noteboxExercise/blob/main/images/4.png?raw=true)
 ### Prerequisites
 
 Make sure you have Node.js and npm installed on your machine.
