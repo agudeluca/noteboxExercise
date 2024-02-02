@@ -10,8 +10,8 @@ import CloseSvg from '@/assets/close.svg';
 import menuIcon from '@/assets/menu.png';
 import {Routes, type RouteParamList} from '@/navigation/types';
 import {DrawerContext} from '@/providers/drawer';
-import CreateTask from '@/screens/CreateTask';
 import Dashboard from '@/screens/Dashboard';
+import TaskDetail from '@/screens/TaskDetail';
 import {animation} from '@/utils/animations';
 
 import styles from './styles';
@@ -106,12 +106,12 @@ const ScreenContent = ({navigation}: ScreenOptionsProps) => {
           options={{
             headerShown: true,
             presentation: 'modal',
-            headerTitle: 'Create Task',
+            headerTitle: 'Task',
             headerLeft: null,
             headerRight: renderGoBack,
           }}
-          name={Routes.createTask}
-          component={CreateTask}
+          name={Routes.taskDetail}
+          component={TaskDetail}
         />
       </Stack.Navigator>
     </Animated.View>

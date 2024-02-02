@@ -4,8 +4,18 @@ import {colors, layouts} from '@/styles';
 
 const styles = StyleSheet.create({
   list: {
-    flex: 1,
+    ...layouts.container,
     width: '100%',
+  },
+  containerScreen: {
+    ...layouts.container,
+    backgroundColor: colors.white,
+  },
+
+  checksContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingRight: 5,
   },
   item: {
     minHeight: 100,
@@ -14,12 +24,16 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 15,
   },
+  titleContainer: {
+    ...layouts.horizontalContainer,
+    alignItems: 'center',
+  },
   title: {
     fontSize: 15,
     maxWidth: '70%',
   },
   header: {
-    flexDirection: 'row',
+    ...layouts.horizontalContainer,
     justifyContent: 'space-between',
   },
   bold: {
@@ -37,7 +51,6 @@ const styles = StyleSheet.create({
   },
   removeText: {
     color: colors.white,
-    fontWeight: 'bold',
     fontSize: 11,
   },
   removeButton: {
@@ -51,14 +64,6 @@ const styles = StyleSheet.create({
     width: 70,
     alignItems: 'center',
   },
-  disabled: {
-    backgroundColor: colors.gray190,
-  },
-  filters: {
-    flexDirection: 'row',
-    padding: 15,
-    marginTop: 70,
-  },
   container: {
     ...layouts.container,
     ...layouts.centered,
@@ -67,29 +72,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginTop: 120,
   },
-  txt: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    fontFamily: 'Helvetica',
-  },
-  footerButton: {
-    position: 'absolute',
-    bottom: 0,
-    alignSelf: 'center',
-    width: '95%',
-    justifyContent: 'center',
-    backgroundColor: colors.blue,
-    borderRadius: 5,
-    height: 50,
-    marginBottom: 20,
-    alignItems: 'center',
-    zIndex: 1,
-
-  },
-  footerText: {
-    fontSize: 18,
-    color: colors.white,
-  }
 });
 
 export default styles;

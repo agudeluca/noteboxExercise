@@ -1,8 +1,10 @@
-import { useFocusEffect } from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import React, {useCallback} from 'react';
 import {Text, FlatList, View, TouchableOpacity} from 'react-native';
 
-import LoadingOrErrorWrapper from '@/components/LoadingOrErrorWrapper';
+import CheckMark from '@/assets/checkmark.svg';
+import SolidCheckMark from '@/assets/solidCheck.svg';
+import FooterButton from '@/components/FooterButton';
 import {useAppNavigation} from '@/navigation/hooks';
 import {Routes} from '@/navigation/types';
 import {getAll} from '@/store';
@@ -13,8 +15,8 @@ import styles from './styles';
 
 const Dashboard = () => {
   const navigation = useAppNavigation();
-  const {onRemove, isRefreshing} = useHandleStore();
-  const [tasks, setTasks] = React.useState<{id: string; value: Task}[]>([]);
+  const {onRemove, isRefreshing, onEdit} = useHandleStore();
+  const [tasks, setTasks] = React.useState<Task[]>([]);
 
   useFocusEffect(
     useCallback(() => {
@@ -23,20 +25,48 @@ const Dashboard = () => {
   );
 
   const handleOnCreateTask = useCallback(() => {
-    navigation.navigate(Routes.createTask);
+    navigation.navigate(Routes.taskDetail, {isCreate: true});
   }, [navigation]);
 
+  const handleOnEdit = useCallback(
+    (item: Task) => () => {
+      navigation.navigate(Routes.taskDetail, {
+        isCreate: false,
+        item,
+      });
+    },
+    [navigation],
+  );
+
+  const handleCheck = useCallback(
+    (item: Task) => () => {
+      onEdit({...item, values: {...item.values, checked: !item.values.checked}});
+    },
+    [],
+  );
+
   const renderItem = useCallback(
-    ({item}: {item: {id: string; value: Task}}): JSX.Element => {
+    ({item}: {item: Task}): JSX.Element => {
       return (
         <View style={styles.item}>
           <View style={styles.header}>
-            <Text style={[styles.text, styles.bold, styles.title]}>{item.value.title}</Text>
+            <TouchableOpacity onPress={handleCheck(item)} style={styles.checksContainer}>
+              {item.values.checked ? (
+                <SolidCheckMark width={32} height={32} />
+              ) : (
+                <CheckMark width={32} height={32} />
+              )}
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.titleContainer} onPress={handleOnEdit(item)}>
+              <Text style={[styles.text, styles.bold, styles.title]}>{item.values.title}</Text>
+            </TouchableOpacity>
             <TouchableOpacity onPress={onRemove(item.id)} style={styles.removeButton}>
-              <Text style={styles.removeText}>Remove</Text>
+              <Text style={[styles.removeText, styles.bold]}>Remove</Text>
             </TouchableOpacity>
           </View>
-          <Text style={[styles.text, styles.body]}>{item.value.text}</Text>
+          <TouchableOpacity onPress={handleOnEdit(item)}>
+            <Text style={[styles.text, styles.body]}>{item.values.text}</Text>
+          </TouchableOpacity>
         </View>
       );
     },
@@ -44,16 +74,12 @@ const Dashboard = () => {
   );
 
   return (
-    <LoadingOrErrorWrapper loading={false} theme="light">
-      <>
-        <View style={styles.container}>
-          <FlatList style={styles.list} data={tasks} renderItem={renderItem} />
-        </View>
-        <TouchableOpacity style={styles.footerButton} onPress={handleOnCreateTask}>
-          <Text style={[styles.text, styles.footerText]}>Create Task</Text>
-        </TouchableOpacity>
-      </>
-    </LoadingOrErrorWrapper>
+    <View style={styles.containerScreen}>
+      <View style={styles.container}>
+        <FlatList style={styles.list} data={tasks} renderItem={renderItem} />
+      </View>
+      <FooterButton onPress={handleOnCreateTask} label="Create Task" />
+    </View>
   );
 };
 

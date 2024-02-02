@@ -1,15 +1,15 @@
 import {StyleSheet} from 'react-native';
 
-import {colors} from '@/styles';
+import {colors, layouts} from '@/styles';
 
 const styles = StyleSheet.create({
   safeArea: {
-    flex: 1,
+    ...layouts.container,
     backgroundColor: colors.white,
     marginTop: 120,
   },
   container: {
-    flex: 1,
+    ...layouts.container,
     backgroundColor: colors.white,
   },
   textArea: {
@@ -27,23 +27,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 5,
   },
-  footerButton: {
-    position: 'absolute',
-    bottom: 0,
-    alignSelf: 'center',
-    width: '95%',
-    justifyContent: 'center',
-    backgroundColor: colors.blue,
-    borderRadius: 5,
-    height: 50,
-    marginBottom: 20,
-    alignItems: 'center',
-    zIndex: 1,
-  },
-  footerText: {
-    fontSize: 18,
-    color: colors.white,
-  },
   label: {
     fontSize: 22,
     fontWeight: 'bold',
@@ -52,9 +35,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-  disabledFooterButton: {
-    backgroundColor: colors.gray190,
-  }
 });
 
 export default styles;

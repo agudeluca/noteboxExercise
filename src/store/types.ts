@@ -1,4 +1,4 @@
 export type Task = {
-  title: string;
-  text: string;
-}
+  id: string;
+  values: {title: string; text: string; checked?: boolean};
+};

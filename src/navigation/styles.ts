@@ -1,11 +1,9 @@
 import {StyleSheet} from 'react-native';
 
-import { colors } from '@/styles';
+import {colors, layouts} from '@/styles';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: layouts.container,
   scene: {
     position: 'absolute',
     width: '100%',
@@ -14,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.blue,
   },
   stack: {
-    flex: 1,
+    ...layouts.container,
     elevation: 5,
     overflow: 'hidden',
   },

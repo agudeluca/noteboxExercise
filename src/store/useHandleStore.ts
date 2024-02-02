@@ -2,12 +2,13 @@ import React from 'react';
 
 import type { Task } from './types';
 
-import {create, remove} from './index';
+import {create, remove, edit} from './index';
 
 export const useHandleStore = (): {
   onRemove: (id: string) => () => void,
-  onAdd: (value: Task) => void,
+  onAdd: (item: Task) => void,
   isRefreshing: boolean,
+  onEdit: (item: Task) => void,
 } => {
   const [isRefreshing, setIsRefreshing] = React.useState(false);
   React.useEffect(() => {
@@ -25,12 +26,20 @@ export const useHandleStore = (): {
   );
 
   const onAdd = React.useCallback(
-    (value: Task) => {
+    (item: Task) => {
       setIsRefreshing(true);
-      create(value);
+      create(item.values);
     },
     [],
   );
 
-  return {onRemove, onAdd, isRefreshing};
+  const onEdit = React.useCallback(
+    (item: Task) => {
+      setIsRefreshing(true);
+      edit(item);
+    },
+    [],
+  );
+
+  return {onRemove, onAdd, isRefreshing, onEdit};
 };

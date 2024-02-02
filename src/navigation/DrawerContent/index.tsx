@@ -72,12 +72,6 @@ const DrawerContent = ({navigation}: DrawerContentComponentProps) => {
         style={getDrawerLabelContainerStyles(Routes.dashboard)}
         onPress={handleNavigate(Routes.dashboard)}
       />
-      <DrawerItem
-        label="Create Task"
-        labelStyle={getLabelStyles(Routes.createTask)}
-        style={getDrawerLabelContainerStyles(Routes.createTask)}
-        onPress={handleNavigate(Routes.createTask)}
-      />
       <View style={styles.line} />
       {/* @ts-ignore */}
       <DrawerItem label="Sign Out" labelStyle={styles.labelText} />
