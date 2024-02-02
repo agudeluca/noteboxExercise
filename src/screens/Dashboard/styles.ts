@@ -7,6 +7,21 @@ const styles = StyleSheet.create({
     ...layouts.container,
     width: '100%',
   },
+  containerImage: {
+    ...layouts.container,
+    backgroundColor: colors.white,
+    alignContent: 'center',
+    alignItems: 'center',
+    marginTop: 120,
+  },
+  emptyText: {
+    fontSize: 16,
+    color: colors.gray190,
+  },
+  image: {
+    width: 200,
+    height: 200,
+  },
   containerScreen: {
     ...layouts.container,
     backgroundColor: colors.white,
